@@ -53,6 +53,17 @@ router.get('/getData', (req,res) => {
 
         return res.json({ success: true, data: data });
     });
+    
+    //Route to delete a given object from our database
+    router.delete('/deleteData', (req, res) => {
+        Data.deleteData({ id: req.body.id }, err => {
+            if (err) {
+                return res.json({ success: false, error: err});
+            } else {
+                return res.json({ success: true });
+            }
+        })
+    });
 });
 
 //Route that will put new information in the database
